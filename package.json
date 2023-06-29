@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Homelesscats/Employee-Tracker/issues"
   },
-  "homepage": "https://github.com/Homelesscats/Employee-Tracker#readme"
+  "homepage": "https://github.com/Homelesscats/Employee-Tracker#readme",
+  "dependencies": {
+    "inquirer": "^9.2.7"
+  }
 }
