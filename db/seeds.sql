@@ -1,14 +1,28 @@
 /*pre-populate your database*/
-INSERT INTO department (id, dept_name)  
-VALUES (001, "Sales"),
-       (002, "Engineering"),
-       (003, "Finance"),
-       (004, "Legal");
+INSERT INTO department (department_name)  
+VALUES ("Sales"),
+       ("Engineering"),
+       ("Finance"),
+       ("Legal");
 
+INSERT INTO 
+    role (title, department_id, salary)
+VALUES  ('Sales Lead', 1, 100000),
+        ('Salesperson', 1, 80000),
+        ('Lead Engineer', 2, 150000),
+        ('Software Engineer', 2, 120000),
+        ('Account Manager', 3, 160000),
+        ('Accountant', 3, 125000),
+        ('Legal Team Lead', 4, 250000),
+        ('Lawyer', 4, 190000);
 
-INSERT INTO role (
-VALUES (001, "")
-
-)
-
-
+INSERT INTO 
+    employee (first_name, last_name, role_id, manager_id)
+VALUES  ('William', 'Doe', 1, NULL),
+        ('Mike', 'Chandler', 2, 1),
+        ('Ashlee', 'Rodrigues', 3, NULL),
+        ('Terry', 'Tupik', 4, 3),
+        ('Kunap', 'Singh', 5, NULL),
+        ('Malia', 'Brown', 6, 5),
+        ('Sarah', 'Lourd', 7, NULL),
+        ('Tim', 'Allen', 8, 7);
