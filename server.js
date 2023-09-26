@@ -1,74 +1,26 @@
-const express = require('express');
-const mysql = require('mysql2'); 
-const inquirer = require('inquirer');
-const PORT = process.env.PORT || 3001;
-const app = express();
+const mysql = require("mysql2");
+const CLI = require("./lib/cli");
 
-
-
-// Express middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+const PORT = process.env.PORT || 3003;
 
 // Connect to database
-const db = mysql.createConnection(
-  {
-    host: 'localhost',
-    // MySQL username,
-    user: 'CEDRIC',
-    // MySQL password
-    password: '',
-    database: 'employee_tracker_db'
-  },
-  console.log(`Connected to the books_db database.`)
-);
-
-
-
-/* 
-var inquirer = require('inquirer');
-inquirer
-  .prompt([
-    /* Pass your questions in here */
-  //   ])
-  //  .then((answers) => {
-    // Use user feedback for... whatever!!
-  //  })
-  //  .catch((error) => {
-    //  if (error.isTtyError) {
-      // Prompt couldn't be rendered in the current environment
-    // } else {
-      // Something else went wrong
-    // }
- // });
-  */
-
-///////////////////////////////////////////////////////////
- 
-// get the client
-const mysql = require('mysql2');
-
-// create the connection to database
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  database: 'test'
+const db = mysql.createConnection({
+  host: "localhost",
+  // MySQL username,
+  user: "CEDRIC",
+  // MySQL password
+  password: "",
+  database: "employee_db",
 });
 
-// simple query  --------------------------------------------------------------EXAMPLE 
-connection.query(
-  'SELECT * FROM `table` WHERE `name` = "Page" AND `age` > 45',
-  function(err, results, fields) {
-    console.log(results); // results contains rows returned by server
-    console.log(fields); // fields contains extra meta data about results, if available
+db.connect((error) => {
+  // if error in connection, gives the user back the error
+  if (error) {
+    console.error("Error connecting to the database: ", error);
+    return;
+  } else {
+    // if connection was successful, run the command line interface for user input
+    console.log(`Now connected to the employee database through PORT ${PORT}!`);
+    new CLI().run(db);
   }
-);
-
-// with placeholder
-connection.query(
-  'SELECT * FROM `table` WHERE `name` = ? AND `age` > ?',
-  ['Page', 45],
-  function(err, results) {
-    console.log(results);
-  }
-);
+});
